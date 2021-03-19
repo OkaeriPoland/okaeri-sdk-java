@@ -29,19 +29,12 @@ public class OkaeriSdkClient {
     private final UnirestInstance unirest;
 
     public OkaeriSdkClient(Config config) {
-        this(config, true);
+        config.followRedirects(true).enableCookieManagement(false);
+        this.unirest = new UnirestInstance(config);
     }
 
-    public OkaeriSdkClient(Config config, boolean applyDefaults) {
-        Integer sdkTimeout = Integer.getInteger("OKAERI_SDK_TIMEOUT", 5000);
-        if (applyDefaults) {
-            config = config
-                    .socketTimeout(sdkTimeout)
-                    .connectTimeout(sdkTimeout)
-                    .followRedirects(true)
-                    .enableCookieManagement(false);
-        }
-        this.unirest = new UnirestInstance(config);
+    protected static int resolveTimeout(String envName, int defaultValue) {
+        return Integer.getInteger(envName, defaultValue);
     }
 
     protected static String resolveToken(String envName, String token) {

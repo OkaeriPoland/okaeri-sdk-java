@@ -34,12 +34,17 @@ import java.util.UUID;
 public class OpenVoteClient extends OkaeriSdkClient {
 
     public OpenVoteClient() {
-        this(null);
+        this(
+                resolveBaseUrl("OKAERI_SDK_OPENVOTE_BASE_PATH", "https://openvote-api.okaeri.eu"),
+                resolveTimeout("OKAERI_SDK_TIMEOUT", 5000)
+        );
     }
 
-    public OpenVoteClient(String token) {
+    public OpenVoteClient(String baseUrl, int timeout) {
         super(Unirest.config()
-                .defaultBaseUrl(resolveBaseUrl("OKAERI_SDK_OPENVOTE_BASE_PATH", "https://openvote-api.okaeri.eu"))
+                .socketTimeout(timeout)
+                .connectTimeout(timeout)
+                .defaultBaseUrl(baseUrl)
         );
     }
 
