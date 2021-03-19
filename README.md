@@ -14,7 +14,7 @@ Add repository to the `repositories` section:
 ```xml
 <repository>
     <id>okaeri-repo</id>
-    <url>https://nexus.okaeri.eu/repository/maven-public/</url>
+    <url>https://storehouse.okaeri.eu/repository/maven-public/</url>
 </repository>
 ```
 Add dependency to the `dependencies` section:
@@ -29,7 +29,7 @@ Add dependency to the `dependencies` section:
 Add repository to the `repositories` section:
 ```groovy
 maven {
-    url "https://nexus.okaeri.eu/repository/maven-public/"
+    url "https://storehouse.okaeri.eu/repository/maven-public/"
 }
 ```
 Add dependency to the `maven` section:
