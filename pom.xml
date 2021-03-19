@@ -71,9 +71,13 @@
 
     <distributionManagement>
         <repository>
-            <id>okaeri-repo</id>
-            <url>https://nexus.okaeri.eu/repository/maven-public/</url>
+            <id>storehouse-releases</id>
+            <url>https://storehouse.okaeri.eu/repository/maven-releases/</url>
         </repository>
+        <snapshotRepository>
+            <id>storehouse-snapshots</id>
+            <url>https://storehouse.okaeri.eu/repository/maven-snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
 </project>
