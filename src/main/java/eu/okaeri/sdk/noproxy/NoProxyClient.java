@@ -30,9 +30,19 @@ public class NoProxyClient extends OkaeriSdkClient {
     }
 
     public NoProxyClient(String token) {
+        this(
+                resolveBaseUrl("OKAERI_SDK_NOPROXY_BASE_PATH", "https://noproxy-api.okaeri.eu"),
+                resolveTimeout("OKAERI_SDK_TIMEOUT", 5000),
+                resolveToken("OKAERI_SDK_NOPROXY_TOKEN", token)
+        );
+    }
+
+    public NoProxyClient(String baseUrl, int timeout, String token) {
         super(Unirest.config()
-                .addDefaultHeader("Authorization", "Bearer " + resolveToken("OKAERI_SDK_NOPROXY_TOKEN", token))
-                .defaultBaseUrl(resolveBaseUrl("OKAERI_SDK_NOPROXY_BASE_PATH", "https://noproxy-api.okaeri.eu"))
+                .socketTimeout(timeout)
+                .connectTimeout(timeout)
+                .addDefaultHeader("Authorization", "Bearer " + token)
+                .defaultBaseUrl(baseUrl)
         );
     }
 

@@ -18,8 +18,8 @@
 package eu.okaeri.sdk.aicensor;
 
 import eu.okaeri.sdk.OkaeriSdkClient;
-import eu.okaeri.sdk.aicensor.model.AiCensorError;
 import eu.okaeri.sdk.aicensor.error.AiCensorException;
+import eu.okaeri.sdk.aicensor.model.AiCensorError;
 import eu.okaeri.sdk.aicensor.model.AiCensorPredictionInfo;
 import kong.unirest.Unirest;
 
@@ -32,9 +32,19 @@ public class AiCensorClient extends OkaeriSdkClient {
     }
 
     public AiCensorClient(String token) {
+        this(
+                resolveBaseUrl("OKAERI_SDK_AICENSOR_BASE_PATH", "https://ai-censor.okaeri.eu"),
+                resolveTimeout("OKAERI_SDK_TIMEOUT", 5000),
+                resolveToken("OKAERI_SDK_AICENSOR_TOKEN", token)
+        );
+    }
+
+    public AiCensorClient(String baseUrl, int timeout, String token) {
         super(Unirest.config()
-                .addDefaultHeader("Token", resolveToken("OKAERI_SDK_AICENSOR_TOKEN", token))
-                .defaultBaseUrl(resolveBaseUrl("OKAERI_SDK_AICENSOR_BASE_PATH", "https://ai-censor.okaeri.eu"))
+                .socketTimeout(timeout)
+                .connectTimeout(timeout)
+                .addDefaultHeader("Token", token)
+                .defaultBaseUrl(baseUrl)
         );
     }
 
