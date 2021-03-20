@@ -22,7 +22,7 @@ Add dependency to the `dependencies` section:
 <dependency>
     <groupId>eu.okaeri</groupId>
     <artifactId>okaeri-sdk</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
 ### Gradle
@@ -34,7 +34,7 @@ maven {
 ```
 Add dependency to the `maven` section:
 ```groovy
-implementation 'eu.okaeri:okaeri-sdk:1.3.0'
+implementation 'eu.okaeri:okaeri-sdk:1.3.1'
 ```
 
 ## Example usage
