@@ -26,11 +26,15 @@ import lombok.Setter;
 @Setter
 public class OkaeriSdkClient {
 
+    private static final String USER_AGENT = "okaeri-sdk/1 (java)";
+
     private final UnirestInstance unirest;
 
     public OkaeriSdkClient(Config config) {
-        config.followRedirects(true).enableCookieManagement(false);
-        this.unirest = new UnirestInstance(config);
+        this.unirest = new UnirestInstance(config
+                .addDefaultHeader("User-Agent", USER_AGENT)
+                .followRedirects(true)
+                .enableCookieManagement(false));
     }
 
     protected static int resolveTimeout(String envName, int defaultValue) {
