@@ -21,12 +21,12 @@ public class OkaeriSdkClient {
     }
 
     protected static int resolveTimeout(String envName, int defaultValue) {
-        return Integer.getInteger(envName, defaultValue);
+        return Integer.parseInt(getPropertyOrEnv(envName, String.valueOf(defaultValue)));
     }
 
     protected static String resolveToken(String envName, String token) {
         String result = ((token == null) || "".equals(token))
-                ? System.getProperty(envName)
+                ? getPropertyOrEnv(envName)
                 : token;
         if (result == null) {
             throw new IllegalArgumentException("token cannot be null");
@@ -34,7 +34,17 @@ public class OkaeriSdkClient {
         return result;
     }
 
+    protected static String getPropertyOrEnv(String name) {
+        String property = System.getProperty(name);
+        return (property == null) ? System.getenv(name) : property;
+    }
+
+    protected static String getPropertyOrEnv(String name, String defaultValue) {
+        String property = getPropertyOrEnv(name);
+        return (property == null) ? defaultValue : property;
+    }
+
     protected static String resolveBaseUrl(String envName, String defaultValue) {
-        return System.getProperty(envName, defaultValue);
+        return getPropertyOrEnv(envName, defaultValue);
     }
 }
