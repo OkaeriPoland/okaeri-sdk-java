@@ -22,7 +22,7 @@ Add dependency to the `dependencies` section:
 <dependency>
     <groupId>eu.okaeri</groupId>
     <artifactId>okaeri-sdk</artifactId>
-    <version>1.3.2</version>
+    <version>1.3.3</version>
     <exclusions>
         <exclusion>
             <groupId>*</groupId>
@@ -38,7 +38,7 @@ maven { url "https://storehouse.okaeri.eu/repository/maven-public/" }
 ```
 Add dependency to the `maven` section:
 ```groovy
-implementation('eu.okaeri:okaeri-sdk:1.3.2', { exclude group: '*', module: '*' })
+implementation('eu.okaeri:okaeri-sdk:1.3.3', { exclude group: '*', module: '*' })
 ```
 
 ## Example usage
