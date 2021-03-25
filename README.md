@@ -1,4 +1,11 @@
 # Okaeri SDK for Java
+
+![License](https://img.shields.io/github/license/OkaeriPoland/okaeri-sdk-java)
+![Total lines](https://img.shields.io/tokei/lines/github/OkaeriPoland/okaeri-sdk-java)
+![Repo size](https://img.shields.io/github/repo-size/OkaeriPoland/okaeri-sdk-java)
+![Contributors](https://img.shields.io/github/contributors/OkaeriPoland/okaeri-sdk-java)
+[![Discord](https://img.shields.io/discord/589089838200913930)](https://discord.gg/hASN5eX)
+
 Currently supported services:
 - [OK! AI.Censor](#ok-aicensor)
 - [OK! No.Proxy](#ok-noproxy)
