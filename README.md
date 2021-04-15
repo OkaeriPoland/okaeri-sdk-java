@@ -29,7 +29,7 @@ Add dependency to the `dependencies` section:
 <dependency>
     <groupId>eu.okaeri</groupId>
     <artifactId>okaeri-sdk</artifactId>
-    <version>1.3.5</version>
+    <version>1.4.0</version>
 </dependency>
 ```
 In public projects that are not standalone systems you may also like to relocate the following:
@@ -54,7 +54,7 @@ maven { url "https://storehouse.okaeri.eu/repository/maven-public/" }
 ```
 Add dependency to the `maven` section:
 ```groovy
-implementation('eu.okaeri:okaeri-sdk:1.3.5')
+implementation('eu.okaeri:okaeri-sdk:1.4.0')
 ```
 
 ## Example usage
