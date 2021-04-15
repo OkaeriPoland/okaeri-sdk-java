@@ -1,8 +1,8 @@
 package eu.okaeri.sdk.openvote.model.list;
 
+import com.google.gson.annotations.SerializedName;
 import eu.okaeri.sdk.openvote.model.vote.OpenVoteVoteIdentifier;
 import lombok.Data;
-import unirest.shaded.com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 

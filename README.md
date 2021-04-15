@@ -29,14 +29,23 @@ Add dependency to the `dependencies` section:
 <dependency>
     <groupId>eu.okaeri</groupId>
     <artifactId>okaeri-sdk</artifactId>
-    <version>1.3.3</version>
-    <exclusions>
-        <exclusion>
-            <groupId>*</groupId>
-            <artifactId>*</artifactId>
-        </exclusion>
-    </exclusions>
+    <version>1.3.5</version>
 </dependency>
+```
+In public projects that are not standalone systems you may also like to relocate the following:
+```xml
+<relocation>
+    <pattern>kong.unirest.</pattern>
+    <shadedPattern>my.package.lib.unirest.</shadedPattern>
+</relocation>
+<relocation>
+    <pattern>org.apache.</pattern>
+    <shadedPattern>my.package.lib.apache.</shadedPattern>
+</relocation>
+<relocation>
+    <pattern>com.google.gson.</pattern>
+    <shadedPattern>my.package.lib.gson.</shadedPattern>
+</relocation>
 ```
 ### Gradle
 Add repository to the `repositories` section:
@@ -45,7 +54,7 @@ maven { url "https://storehouse.okaeri.eu/repository/maven-public/" }
 ```
 Add dependency to the `maven` section:
 ```groovy
-implementation('eu.okaeri:okaeri-sdk:1.3.3', { exclude group: '*', module: '*' })
+implementation('eu.okaeri:okaeri-sdk:1.3.5')
 ```
 
 ## Example usage

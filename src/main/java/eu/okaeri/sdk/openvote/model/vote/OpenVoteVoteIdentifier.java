@@ -1,8 +1,8 @@
 package eu.okaeri.sdk.openvote.model.vote;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import unirest.shaded.com.google.gson.annotations.SerializedName;
 
 @Data
 @AllArgsConstructor
