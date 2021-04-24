@@ -10,7 +10,9 @@ import java.util.function.Consumer;
 public class NoProxyError {
 
     public static final Consumer<HttpResponse<NoProxyError>> CONSUMER = response -> {
-        NoProxyError error = response.getBody();
+        NoProxyError error = (response.getBody() == null)
+                ? new NoProxyError(response.getStatus(), "UNKNOWN", response.getStatus() + " " + response.getStatusText())
+                : response.getBody();
         String message = "Error handling request (" + error.error + " - " + error.message + ")";
         throw new NoProxyException(error, message);
     };

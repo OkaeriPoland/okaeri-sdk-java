@@ -1,10 +1,11 @@
 package eu.okaeri.sdk.aicensor.error;
 
 import eu.okaeri.sdk.aicensor.model.AiCensorError;
+import lombok.Getter;
 
 public class AiCensorException extends RuntimeException {
 
-    private AiCensorError apiError;
+    @Getter private AiCensorError apiError;
 
     public AiCensorException(AiCensorError apiError, String s) {
         super(s);
@@ -24,9 +25,5 @@ public class AiCensorException extends RuntimeException {
     public AiCensorException(AiCensorError apiError, String s, Throwable throwable, boolean b1, boolean b2) {
         super(s, throwable, b1, b2);
         this.apiError = apiError;
-    }
-
-    public AiCensorError getApiError() {
-        return this.apiError;
     }
 }
