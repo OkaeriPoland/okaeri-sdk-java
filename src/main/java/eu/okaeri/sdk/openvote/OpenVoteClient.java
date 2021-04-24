@@ -10,7 +10,7 @@ import eu.okaeri.sdk.openvote.model.server.OpenVoteServerVoteCheckRequest;
 import eu.okaeri.sdk.openvote.model.server.OpenVoteServerVoteCheckResult;
 import eu.okaeri.sdk.openvote.model.server.OpenVoteServerVoteStartRequest;
 import eu.okaeri.sdk.openvote.model.vote.OpenVoteError;
-import kong.unirest.Unirest;
+import kong.unirest.Config;
 
 import java.util.UUID;
 
@@ -24,7 +24,7 @@ public class OpenVoteClient extends OkaeriSdkClient {
     }
 
     public OpenVoteClient(String baseUrl, int timeout) {
-        super(Unirest.config()
+        super(new Config()
                 .socketTimeout(timeout)
                 .connectTimeout(timeout)
                 .defaultBaseUrl(baseUrl)

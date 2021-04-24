@@ -4,7 +4,7 @@ import eu.okaeri.sdk.OkaeriSdkClient;
 import eu.okaeri.sdk.aicensor.error.AiCensorException;
 import eu.okaeri.sdk.aicensor.model.AiCensorError;
 import eu.okaeri.sdk.aicensor.model.AiCensorPredictionInfo;
-import kong.unirest.Unirest;
+import kong.unirest.Config;
 
 import java.util.Collections;
 
@@ -23,7 +23,7 @@ public class AiCensorClient extends OkaeriSdkClient {
     }
 
     public AiCensorClient(String baseUrl, int timeout, String token) {
-        super(Unirest.config()
+        super(new Config()
                 .socketTimeout(timeout)
                 .connectTimeout(timeout)
                 .addDefaultHeader("Token", token)

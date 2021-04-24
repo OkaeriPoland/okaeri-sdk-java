@@ -4,6 +4,10 @@ import kong.unirest.Config;
 import kong.unirest.UnirestInstance;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.SneakyThrows;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Getter
 @Setter
@@ -29,7 +33,7 @@ public class OkaeriSdkClient {
                 ? getPropertyOrEnv(envName)
                 : token;
         if (result == null) {
-            throw new IllegalArgumentException("token cannot be null");
+            throw new IllegalArgumentException("property for " + envName + " cannot be null");
         }
         return result;
     }
@@ -46,5 +50,10 @@ public class OkaeriSdkClient {
 
     protected static String resolveBaseUrl(String envName, String defaultValue) {
         return getPropertyOrEnv(envName, defaultValue);
+    }
+
+    @SneakyThrows
+    protected static String encode(String value) {
+        return URLEncoder.encode(value, StandardCharsets.UTF_8.name());
     }
 }

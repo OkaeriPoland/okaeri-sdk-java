@@ -4,7 +4,7 @@ import eu.okaeri.sdk.OkaeriSdkClient;
 import eu.okaeri.sdk.noproxy.error.NoProxyException;
 import eu.okaeri.sdk.noproxy.model.NoProxyAddressInfo;
 import eu.okaeri.sdk.noproxy.model.NoProxyError;
-import kong.unirest.Unirest;
+import kong.unirest.Config;
 
 public class NoProxyClient extends OkaeriSdkClient {
 
@@ -21,7 +21,7 @@ public class NoProxyClient extends OkaeriSdkClient {
     }
 
     public NoProxyClient(String baseUrl, int timeout, String token) {
-        super(Unirest.config()
+        super(new Config()
                 .socketTimeout(timeout)
                 .connectTimeout(timeout)
                 .addDefaultHeader("Authorization", "Bearer " + token)
@@ -31,7 +31,7 @@ public class NoProxyClient extends OkaeriSdkClient {
 
     public NoProxyAddressInfo getInfo(String address) throws NoProxyException {
         return super.getUnirest()
-                .get("/v1/" + address)
+                .get("/v1/" + encode(address))
                 .asObject(NoProxyAddressInfo.class)
                 .ifFailure(NoProxyError.class, NoProxyError.CONSUMER)
                 .getBody();
