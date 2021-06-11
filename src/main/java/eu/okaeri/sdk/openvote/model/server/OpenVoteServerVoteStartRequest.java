@@ -6,13 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OpenVoteServerVoteStartRequest {
+public class OpenVoteServerVoteStartRequest implements Serializable {
     @SerializedName("list") private String list;
     @SerializedName("stats_id") private UUID statsId;
     @SerializedName("single_cooldown") private int singleCooldown;

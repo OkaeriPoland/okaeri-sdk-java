@@ -4,10 +4,11 @@ import com.google.gson.annotations.SerializedName;
 import eu.okaeri.sdk.openvote.model.vote.OpenVoteVoteIdentifier;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class OpenVoteListVote {
+public class OpenVoteListVote implements Serializable {
     @SerializedName("list") private final String list;
     @SerializedName("server") private final String server;
     @SerializedName("game") private final String game;

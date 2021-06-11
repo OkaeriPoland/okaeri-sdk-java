@@ -3,8 +3,10 @@ package eu.okaeri.sdk.noproxy.model;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class NoProxyAddressInfoRisks {
+public class NoProxyAddressInfoRisks implements Serializable {
     @SerializedName("total") private final int total;
     @SerializedName("proxy") private final boolean proxy;
     @SerializedName("country") private final boolean country;
