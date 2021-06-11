@@ -12,6 +12,9 @@ import java.util.List;
 
 public class SklepMcClient extends OkaeriSdkClient {
 
+    public static final String DEFAULT_BASE_URL = "https://www.sklepmc.pl/api";
+    public static final int DEFAULT_TIMEOUT = 5000;
+
     @Getter private final String shopId;
 
     public SklepMcClient() {
@@ -20,8 +23,17 @@ public class SklepMcClient extends OkaeriSdkClient {
 
     public SklepMcClient(String token, String shopId) {
         this(
-                resolveBaseUrl("OKAERI_SDK_SKLEPMC_BASE_PATH", "https://www.sklepmc.pl/api"),
-                resolveTimeout("OKAERI_SDK_TIMEOUT", 5000),
+                resolveBaseUrl("OKAERI_SDK_SKLEPMC_BASE_PATH", DEFAULT_BASE_URL),
+                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
+                resolveToken("OKAERI_SDK_SKLEPMC_TOKEN", token),
+                resolveToken("OKAERI_SDK_SKLEPMC_SHOP_ID", shopId)
+        );
+    }
+
+    public SklepMcClient(String baseUrl, String token, String shopId) {
+        this(
+                resolveBaseUrl("OKAERI_SDK_SKLEPMC_BASE_PATH", baseUrl),
+                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
                 resolveToken("OKAERI_SDK_SKLEPMC_TOKEN", token),
                 resolveToken("OKAERI_SDK_SKLEPMC_SHOP_ID", shopId)
         );

@@ -4,10 +4,11 @@ import eu.okaeri.sdk.sklepmc.error.SklepMcException;
 import kong.unirest.HttpResponse;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.function.Consumer;
 
 @Data
-public class SklepMcError {
+public class SklepMcError implements Serializable {
 
     public static final Consumer<HttpResponse<SklepMcError>> CONSUMER = response -> {
         SklepMcError error = (response.getBody() == null)

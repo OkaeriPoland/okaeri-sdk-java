@@ -4,10 +4,11 @@ import eu.okaeri.sdk.noproxy.error.NoProxyException;
 import kong.unirest.HttpResponse;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.function.Consumer;
 
 @Data
-public class NoProxyError {
+public class NoProxyError implements Serializable {
 
     public static final Consumer<HttpResponse<NoProxyError>> CONSUMER = response -> {
         NoProxyError error = (response.getBody() == null)

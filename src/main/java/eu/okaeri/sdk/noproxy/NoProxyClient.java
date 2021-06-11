@@ -8,14 +8,25 @@ import kong.unirest.Config;
 
 public class NoProxyClient extends OkaeriSdkClient {
 
+    public static final String DEFAULT_BASE_URL = "https://noproxy-api.okaeri.eu";
+    public static final int DEFAULT_TIMEOUT = 5000;
+
     public NoProxyClient() {
         this(null);
     }
 
     public NoProxyClient(String token) {
         this(
-                resolveBaseUrl("OKAERI_SDK_NOPROXY_BASE_PATH", "https://noproxy-api.okaeri.eu"),
-                resolveTimeout("OKAERI_SDK_TIMEOUT", 5000),
+                resolveBaseUrl("OKAERI_SDK_NOPROXY_BASE_PATH", DEFAULT_BASE_URL),
+                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
+                resolveToken("OKAERI_SDK_NOPROXY_TOKEN", token)
+        );
+    }
+
+    public NoProxyClient(String baseUrl, String token) {
+        this(
+                resolveBaseUrl("OKAERI_SDK_NOPROXY_BASE_PATH", baseUrl),
+                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
                 resolveToken("OKAERI_SDK_NOPROXY_TOKEN", token)
         );
     }

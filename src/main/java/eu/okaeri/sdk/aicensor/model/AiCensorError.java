@@ -4,10 +4,11 @@ import eu.okaeri.sdk.aicensor.error.AiCensorException;
 import kong.unirest.HttpResponse;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.function.Consumer;
 
 @Data
-public class AiCensorError {
+public class AiCensorError implements Serializable {
 
     public static final Consumer<HttpResponse<AiCensorError>> CONSUMER = response -> {
         AiCensorError error = (response.getBody() == null)

@@ -16,10 +16,20 @@ import java.util.UUID;
 
 public class OpenVoteClient extends OkaeriSdkClient {
 
+    public static final String DEFAULT_BASE_URL = "https://openvote-api.okaeri.eu";
+    public static final int DEFAULT_TIMEOUT = 5000;
+
     public OpenVoteClient() {
         this(
-                resolveBaseUrl("OKAERI_SDK_OPENVOTE_BASE_PATH", "https://openvote-api.okaeri.eu"),
-                resolveTimeout("OKAERI_SDK_TIMEOUT", 5000)
+                resolveBaseUrl("OKAERI_SDK_OPENVOTE_BASE_PATH", DEFAULT_BASE_URL),
+                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT)
+        );
+    }
+
+    public OpenVoteClient(String baseUrl) {
+        this(
+                resolveBaseUrl("OKAERI_SDK_OPENVOTE_BASE_PATH", baseUrl),
+                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT)
         );
     }
 

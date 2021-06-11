@@ -4,10 +4,11 @@ import eu.okaeri.sdk.openvote.error.OpenVoteException;
 import kong.unirest.HttpResponse;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.function.Consumer;
 
 @Data
-public class OpenVoteError {
+public class OpenVoteError implements Serializable {
 
     public static final Consumer<HttpResponse<OpenVoteError>> CONSUMER = response -> {
         OpenVoteError error = (response.getBody() == null)
