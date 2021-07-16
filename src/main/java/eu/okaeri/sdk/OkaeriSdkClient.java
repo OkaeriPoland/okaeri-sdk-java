@@ -14,12 +14,14 @@ import java.nio.charset.StandardCharsets;
 public class OkaeriSdkClient {
 
     private static final String USER_AGENT = "okaeri-sdk/1 (java)";
+    private static final String CONTENT_TYPE = "application/json";
 
     private final UnirestInstance unirest;
 
     public OkaeriSdkClient(Config config) {
         this.unirest = new UnirestInstance(config
                 .addDefaultHeader("User-Agent", USER_AGENT)
+                .addDefaultHeader("Content-Type", CONTENT_TYPE)
                 .followRedirects(true)
                 .enableCookieManagement(false));
     }
