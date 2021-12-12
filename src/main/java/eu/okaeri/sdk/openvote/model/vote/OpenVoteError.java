@@ -12,8 +12,8 @@ public class OpenVoteError implements Serializable {
 
     public static final Consumer<HttpResponse<OpenVoteError>> CONSUMER = response -> {
         OpenVoteError error = (response.getBody() == null)
-                ? new OpenVoteError(response.getStatus(), "UNKNOWN", response.getStatus() + " " + response.getStatusText())
-                : response.getBody();
+            ? new OpenVoteError(response.getStatus(), "UNKNOWN", response.getStatus() + " " + response.getStatusText())
+            : response.getBody();
         String message = "Error handling request (" + error.error + " - " + error.message + ")";
         throw new OpenVoteException(error, message);
     };

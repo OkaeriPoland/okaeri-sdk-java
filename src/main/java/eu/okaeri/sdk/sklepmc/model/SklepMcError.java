@@ -12,8 +12,8 @@ public class SklepMcError implements Serializable {
 
     public static final Consumer<HttpResponse<SklepMcError>> CONSUMER = response -> {
         SklepMcError error = (response.getBody() == null)
-                ? new SklepMcError("UNKNOWN", response.getStatus() + " " + response.getStatusText())
-                : response.getBody();
+            ? new SklepMcError("UNKNOWN", response.getStatus() + " " + response.getStatusText())
+            : response.getBody();
         String message = "Error handling request (" + error.type + " - " + error.message + ")";
         throw new SklepMcException(error, message);
     };
