@@ -23,14 +23,14 @@ public abstract class ExecutionWatcher {
     public long update() {
         // try to confirm awaiting transactions failed before
         long successfullyConfirmed = this.awaitingConfirmation.stream()
-                .map(this::confirmTransaction)
-                .filter(Predicate.isEqual(true))
-                .count();
+            .map(this::confirmTransaction)
+            .filter(Predicate.isEqual(true))
+            .count();
         // fetch and try to execute new tasks
         long successfullyExecuted = this.client.getAwaitingExecution(this.serverId).stream()
-                .map(this::executeTask)
-                .filter(Predicate.isEqual(true))
-                .count();
+            .map(this::executeTask)
+            .filter(Predicate.isEqual(true))
+            .count();
         // return total count of executed tasks
         return successfullyConfirmed + successfullyExecuted;
     }

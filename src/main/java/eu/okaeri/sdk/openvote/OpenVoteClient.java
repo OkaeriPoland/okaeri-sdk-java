@@ -21,42 +21,42 @@ public class OpenVoteClient extends OkaeriSdkClient {
 
     public OpenVoteClient() {
         this(
-                resolveBaseUrl("OKAERI_SDK_OPENVOTE_BASE_PATH", DEFAULT_BASE_URL),
-                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT)
+            resolveBaseUrl("OKAERI_SDK_OPENVOTE_BASE_PATH", DEFAULT_BASE_URL),
+            resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT)
         );
     }
 
     public OpenVoteClient(String baseUrl) {
         this(
-                resolveBaseUrl("OKAERI_SDK_OPENVOTE_BASE_PATH", baseUrl),
-                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT)
+            resolveBaseUrl("OKAERI_SDK_OPENVOTE_BASE_PATH", baseUrl),
+            resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT)
         );
     }
 
     public OpenVoteClient(String baseUrl, int timeout) {
         super(new Config()
-                .socketTimeout(timeout)
-                .connectTimeout(timeout)
-                .defaultBaseUrl(baseUrl)
+            .socketTimeout(timeout)
+            .connectTimeout(timeout)
+            .defaultBaseUrl(baseUrl)
         );
     }
 
     public OpenVoteServerVote postServerVoteNew(OpenVoteServerVoteStartRequest request) throws OpenVoteException {
         return super.getUnirest()
-                .post("/v1/server/vote/new")
-                .body(request)
-                .asObject(OpenVoteServerVote.class)
-                .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
-                .getBody();
+            .post("/v1/server/vote/new")
+            .body(request)
+            .asObject(OpenVoteServerVote.class)
+            .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
+            .getBody();
     }
 
     public OpenVoteServerVoteCheckResult postServerVoteCheck(OpenVoteServerVoteCheckRequest request) throws OpenVoteException {
         return super.getUnirest()
-                .post("/v1/server/vote/check")
-                .body(request)
-                .asObject(OpenVoteServerVoteCheckResult.class)
-                .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
-                .getBody();
+            .post("/v1/server/vote/check")
+            .body(request)
+            .asObject(OpenVoteServerVoteCheckResult.class)
+            .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
+            .getBody();
     }
 
     public OpenVoteListVote postListSuccess(UUID listVoteId, String key) throws OpenVoteException {
@@ -65,11 +65,11 @@ public class OpenVoteClient extends OkaeriSdkClient {
 
     public OpenVoteListVote postListSuccess(UUID listVoteId, OpenVoteListVoteSuccess success) throws OpenVoteException {
         return super.getUnirest()
-                .post("/v1/list/vote/success/" + listVoteId)
-                .body(success)
-                .asObject(OpenVoteListVote.class)
-                .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
-                .getBody();
+            .post("/v1/list/vote/success/" + listVoteId)
+            .body(success)
+            .asObject(OpenVoteListVote.class)
+            .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
+            .getBody();
     }
 
     public OpenVoteListVote postListError(UUID listVoteId, String key, String errorCode, String errorMessage) throws OpenVoteException {
@@ -78,18 +78,18 @@ public class OpenVoteClient extends OkaeriSdkClient {
 
     public OpenVoteListVote postListError(UUID listVoteId, OpenVoteListVoteError error) throws OpenVoteException {
         return super.getUnirest()
-                .post("/v1/list/vote/error/" + listVoteId)
-                .body(error)
-                .asObject(OpenVoteListVote.class)
-                .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
-                .getBody();
+            .post("/v1/list/vote/error/" + listVoteId)
+            .body(error)
+            .asObject(OpenVoteListVote.class)
+            .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
+            .getBody();
     }
 
     public OpenVoteListVote getListVote(UUID listVoteId) throws OpenVoteException {
         return super.getUnirest()
-                .get("/v1/list/vote/" + listVoteId)
-                .asObject(OpenVoteListVote.class)
-                .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
-                .getBody();
+            .get("/v1/list/vote/" + listVoteId)
+            .asObject(OpenVoteListVote.class)
+            .ifFailure(OpenVoteError.class, OpenVoteError.CONSUMER)
+            .getBody();
     }
 }

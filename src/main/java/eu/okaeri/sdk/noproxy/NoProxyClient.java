@@ -17,34 +17,34 @@ public class NoProxyClient extends OkaeriSdkClient {
 
     public NoProxyClient(String token) {
         this(
-                resolveBaseUrl("OKAERI_SDK_NOPROXY_BASE_PATH", DEFAULT_BASE_URL),
-                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
-                resolveToken("OKAERI_SDK_NOPROXY_TOKEN", token)
+            resolveBaseUrl("OKAERI_SDK_NOPROXY_BASE_PATH", DEFAULT_BASE_URL),
+            resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
+            resolveToken("OKAERI_SDK_NOPROXY_TOKEN", token)
         );
     }
 
     public NoProxyClient(String baseUrl, String token) {
         this(
-                resolveBaseUrl("OKAERI_SDK_NOPROXY_BASE_PATH", baseUrl),
-                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
-                resolveToken("OKAERI_SDK_NOPROXY_TOKEN", token)
+            resolveBaseUrl("OKAERI_SDK_NOPROXY_BASE_PATH", baseUrl),
+            resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
+            resolveToken("OKAERI_SDK_NOPROXY_TOKEN", token)
         );
     }
 
     public NoProxyClient(String baseUrl, int timeout, String token) {
         super(new Config()
-                .socketTimeout(timeout)
-                .connectTimeout(timeout)
-                .addDefaultHeader("Authorization", "Bearer " + token)
-                .defaultBaseUrl(baseUrl)
+            .socketTimeout(timeout)
+            .connectTimeout(timeout)
+            .addDefaultHeader("Authorization", "Bearer " + token)
+            .defaultBaseUrl(baseUrl)
         );
     }
 
     public NoProxyAddressInfo getInfo(String address) throws NoProxyException {
         return super.getUnirest()
-                .get("/v1/" + encode(address))
-                .asObject(NoProxyAddressInfo.class)
-                .ifFailure(NoProxyError.class, NoProxyError.CONSUMER)
-                .getBody();
+            .get("/v1/" + encode(address))
+            .asObject(NoProxyAddressInfo.class)
+            .ifFailure(NoProxyError.class, NoProxyError.CONSUMER)
+            .getBody();
     }
 }

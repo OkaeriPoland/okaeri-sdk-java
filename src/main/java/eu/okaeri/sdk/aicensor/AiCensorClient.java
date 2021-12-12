@@ -19,35 +19,35 @@ public class AiCensorClient extends OkaeriSdkClient {
 
     public AiCensorClient(String token) {
         this(
-                resolveBaseUrl("OKAERI_SDK_AICENSOR_BASE_PATH", DEFAULT_BASE_URL),
-                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
-                resolveToken("OKAERI_SDK_AICENSOR_TOKEN", token)
+            resolveBaseUrl("OKAERI_SDK_AICENSOR_BASE_PATH", DEFAULT_BASE_URL),
+            resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
+            resolveToken("OKAERI_SDK_AICENSOR_TOKEN", token)
         );
     }
 
     public AiCensorClient(String baseUrl, String token) {
         this(
-                resolveBaseUrl("OKAERI_SDK_AICENSOR_BASE_PATH", baseUrl),
-                resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
-                resolveToken("OKAERI_SDK_AICENSOR_TOKEN", token)
+            resolveBaseUrl("OKAERI_SDK_AICENSOR_BASE_PATH", baseUrl),
+            resolveTimeout("OKAERI_SDK_TIMEOUT", DEFAULT_TIMEOUT),
+            resolveToken("OKAERI_SDK_AICENSOR_TOKEN", token)
         );
     }
 
     public AiCensorClient(String baseUrl, int timeout, String token) {
         super(new Config()
-                .socketTimeout(timeout)
-                .connectTimeout(timeout)
-                .addDefaultHeader("Token", token)
-                .defaultBaseUrl(baseUrl)
+            .socketTimeout(timeout)
+            .connectTimeout(timeout)
+            .addDefaultHeader("Token", token)
+            .defaultBaseUrl(baseUrl)
         );
     }
 
     public AiCensorPredictionInfo getPrediction(String phrase) throws AiCensorException {
         return super.getUnirest()
-                .post("/predict")
-                .body(Collections.singletonMap("phrase", phrase))
-                .asObject(AiCensorPredictionInfo.class)
-                .ifFailure(AiCensorError.class, AiCensorError.CONSUMER)
-                .getBody();
+            .post("/predict")
+            .body(Collections.singletonMap("phrase", phrase))
+            .asObject(AiCensorPredictionInfo.class)
+            .ifFailure(AiCensorError.class, AiCensorError.CONSUMER)
+            .getBody();
     }
 }

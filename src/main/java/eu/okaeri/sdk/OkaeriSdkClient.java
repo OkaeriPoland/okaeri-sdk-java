@@ -20,10 +20,10 @@ public class OkaeriSdkClient {
 
     public OkaeriSdkClient(Config config) {
         this.unirest = new UnirestInstance(config
-                .addDefaultHeader("User-Agent", USER_AGENT)
-                .addDefaultHeader("Content-Type", CONTENT_TYPE)
-                .followRedirects(true)
-                .enableCookieManagement(false));
+            .addDefaultHeader("User-Agent", USER_AGENT)
+            .addDefaultHeader("Content-Type", CONTENT_TYPE)
+            .followRedirects(true)
+            .enableCookieManagement(false));
     }
 
     protected static int resolveTimeout(String envName, int defaultValue) {
@@ -32,8 +32,8 @@ public class OkaeriSdkClient {
 
     protected static String resolveToken(String envName, String token) {
         String result = ((token == null) || "".equals(token))
-                ? getPropertyOrEnv(envName)
-                : token;
+            ? getPropertyOrEnv(envName)
+            : token;
         if (result == null) {
             throw new IllegalArgumentException("property for " + envName + " cannot be null");
         }

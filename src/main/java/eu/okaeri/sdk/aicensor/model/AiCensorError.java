@@ -12,8 +12,8 @@ public class AiCensorError implements Serializable {
 
     public static final Consumer<HttpResponse<AiCensorError>> CONSUMER = response -> {
         AiCensorError error = (response.getBody() == null)
-                ? new AiCensorError("UNKNOWN", response.getStatus() + " " + response.getStatusText())
-                : response.getBody();
+            ? new AiCensorError("UNKNOWN", response.getStatus() + " " + response.getStatusText())
+            : response.getBody();
         String message = "Error handling request (" + error.type + " - " + error.message + ")";
         throw new AiCensorException(error, message);
     };
