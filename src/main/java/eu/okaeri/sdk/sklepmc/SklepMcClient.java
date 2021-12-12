@@ -1,7 +1,7 @@
 package eu.okaeri.sdk.sklepmc;
 
 import eu.okaeri.sdk.OkaeriSdkClient;
-import eu.okaeri.sdk.aicensor.error.AiCensorException;
+import eu.okaeri.sdk.sklepmc.error.SklepMcException;
 import eu.okaeri.sdk.sklepmc.model.ExecutionTaskInfo;
 import eu.okaeri.sdk.sklepmc.model.SklepMcError;
 import kong.unirest.Config;
@@ -49,7 +49,7 @@ public class SklepMcClient extends OkaeriSdkClient {
         this.shopId = shopId;
     }
 
-    public List<ExecutionTaskInfo> getAwaitingExecution(int serverId) throws AiCensorException {
+    public List<ExecutionTaskInfo> getAwaitingExecution(int serverId) throws SklepMcException {
         return Arrays.asList(super.getUnirest()
                 .get("/" + encode(this.shopId) + "/server/" + serverId + "/awaitingExecution")
                 .asObject(ExecutionTaskInfo[].class)
@@ -57,7 +57,7 @@ public class SklepMcClient extends OkaeriSdkClient {
                 .getBody());
     }
 
-    public boolean updateStatus(String transactionId, String status) {
+    public boolean updateStatus(String transactionId, String status) throws SklepMcException {
         return "OK".equals(super.getUnirest()
                 .post("/" + encode(this.shopId) + "/transaction/" + encode(transactionId) + "/status")
                 .body(status)
