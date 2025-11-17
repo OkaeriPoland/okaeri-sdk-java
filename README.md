@@ -12,10 +12,10 @@ Currently supported services:
 - [OK! No.Proxy](#ok-noproxy)
 - [OK! OpenVote](#ok-openvote)
 
-Full documentation available on [wiki.okaeri.eu](https://wiki.okaeri.eu/) in:
+Full documentation available on [wiki.okaeri.cloud](https://wiki.okaeri.cloud/) in:
 
-- [Polish](https://wiki.okaeri.eu/pl/sdk/java)
-- [English](https://wiki.okaeri.eu/en/sdk/java)
+- [Polish](https://wiki.okaeri.cloud/pl/sdk/java)
+- [English](https://wiki.okaeri.cloud/en/sdk/java)
 
 ## Installation
 
@@ -25,8 +25,8 @@ Add repository to the `repositories` section:
 
 ```xml
 <repository>
-    <id>okaeri-repo</id>
-    <url>https://storehouse.okaeri.eu/repository/maven-public/</url>
+    <id>okaeri-releases</id>
+    <url>https://repo.okaeri.cloud/releases</url>
 </repository>
 ```
 
@@ -62,45 +62,49 @@ In public projects that are not standalone systems you may also like to relocate
 Add repository to the `repositories` section:
 
 ```groovy
-maven { url "https://storehouse.okaeri.eu/repository/maven-public/" }
+maven { url "https://repo.okaeri.cloud/releases" }
 ```
 
 Add dependency to the `maven` section:
 
 ```groovy
-implementation('eu.okaeri:okaeri-sdk:1.4.5')
+implementation('eu.okaeri:okaeri-sdk:2.0.3')
 ```
 
 ## Example usage
 
 ### OK! AI.Censor
 
-See full docs in: [Polish](https://wiki.okaeri.eu/pl/sdk/java#ok-aicensor), [English](https://wiki.okaeri.eu/en/sdk/java#ok-aicensor)
+See full docs in: [Polish](https://wiki.okaeri.cloud/pl/sdk/java#ok-aicensor), [English](https://wiki.okaeri.cloud/en/sdk/java#ok-aicensor)
 
 ```java
 import eu.okaeri.sdk.aicensor.AiCensorClient;
 import eu.okaeri.sdk.aicensor.error.AiCensorException;
-import eu.okaeri.sdk.aicensor.model.AiCensorPredictionInfo;
+import eu.okaeri.sdk.aicensor.model.AiCensorAnalysisDetails;
 
 final class Demo {
     public static void main(String[] args) {
         AiCensorClient aicensor = new AiCensorClient("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX");
-        AiCensorPredictionInfo prediction;
+        AiCensorAnalysisDetails analysis;
         try {
-            prediction = aicensor.getPrediction("o cie k u r//w@!");;
+            analysis = aicensor.getAnalysisDetails("o cie k u r//w@!");
         } catch (AiCensorException exception) {
             exception.printStackTrace(); // FIXME: error handling
             return;
         }
-        boolean swear = prediction.getGeneral().isSwear();
-        System.out.println(swear ? "Tak, to jest wulgarne." : "Nie, to nie jest wulgarne");
+        boolean disdain = analysis.getJudgement().getDisdain() > 0; // pogardliwe
+        boolean profane = analysis.getJudgement().getProfane() > 0; // obraźliwe
+        boolean vulgar = analysis.getJudgement().getVulgar() > 0; // wulgarne
+        boolean block = analysis.getSuggestions().isBlock(); // vulgar > 0
+        boolean verify = analysis.getSuggestions().isBlock(); // disdain || profane || vulgar
+        System.out.println("disdain: " + disdain + ", profane: " + profane + ", vulgar: " + vulgar + ", block: " + block + ", verify: " + verify);
     }
 }
 ```
 
 ### OK! No.Proxy
 
-See full docs in: [Polish](https://wiki.okaeri.eu/pl/sdk/java#ok-noproxy), [English](https://wiki.okaeri.eu/en/sdk/java#ok-noproxy)
+See full docs in: [Polish](https://wiki.okaeri.cloud/pl/sdk/java#ok-noproxy), [English](https://wiki.okaeri.cloud/en/sdk/java#ok-noproxy)
 
 ```java
 import eu.okaeri.sdk.noproxy.NoProxyClient;
@@ -127,7 +131,7 @@ final class Demo {
 
 ### OK! OpenVote
 
-See full docs in: [Polish](https://wiki.okaeri.eu/pl/sdk/java#ok-openvote), [English](https://wiki.okaeri.eu/en/sdk/java#ok-openvote)
+See full docs in: [Polish](https://wiki.okaeri.cloud/pl/sdk/java#ok-openvote), [English](https://wiki.okaeri.cloud/en/sdk/java#ok-openvote)
 
 ```java
 import eu.okaeri.sdk.openvote.OpenVoteClient;
@@ -141,7 +145,7 @@ final class Demo {
         OpenVoteClient openvote = new OpenVoteClient();
         OpenVoteListVote vote;
         try {
-            vote = openvote.getListVote(UUID.fromString("3fa85f64-5717-4562-b3fc-2c963f66afa6"));
+            vote = openvote.getListVote(UUID.fromString("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"));
         } catch (OpenVoteException exception) {
             exception.printStackTrace(); // FIXME: error handling
             return;

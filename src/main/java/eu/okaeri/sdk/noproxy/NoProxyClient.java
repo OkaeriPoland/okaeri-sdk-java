@@ -8,7 +8,7 @@ import kong.unirest.Config;
 
 public class NoProxyClient extends OkaeriSdkClient {
 
-    public static final String DEFAULT_BASE_URL = "https://noproxy-api.okaeri.eu";
+    public static final String DEFAULT_BASE_URL = "https://api.noproxy.okaeri.cloud";
     public static final int DEFAULT_TIMEOUT = 5000;
 
     public NoProxyClient() {

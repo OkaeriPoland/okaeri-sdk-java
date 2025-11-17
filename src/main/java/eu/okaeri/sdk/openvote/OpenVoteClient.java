@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class OpenVoteClient extends OkaeriSdkClient {
 
-    public static final String DEFAULT_BASE_URL = "https://openvote-api.okaeri.eu";
+    public static final String DEFAULT_BASE_URL = "https://api.openvote.okaeri.cloud";
     public static final int DEFAULT_TIMEOUT = 5000;
 
     public OpenVoteClient() {
