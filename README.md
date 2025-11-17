@@ -36,7 +36,7 @@ Add dependency to the `dependencies` section:
 <dependency>
     <groupId>eu.okaeri</groupId>
     <artifactId>okaeri-sdk</artifactId>
-    <version>1.4.5</version>
+    <version>1.4.6</version>
 </dependency>
 ```
 
